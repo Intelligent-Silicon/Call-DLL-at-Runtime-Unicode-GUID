@@ -1,0 +1,82 @@
+    module Call_GetProcAddress_DLL                  (* Names the module - this should be obvious now that this is also comment! *)
+
+(* ============================================================================
+    Jim Kane Example taken from cmag-2001-11.pdf
+
+    ! Jim Kane example loads the api address obtained using LoadLibrary(Ex) & GetProcAddress into eax, it zeros ebx, ecx and edx and pushes actual params onto the stack and then "jmp eax" into life.
+    !
+    ! You need these extra JmpDLL_Pxx api prototypes with the PROC and NAME('JmpDLL') to trick the clarion compiler so it doesnt throw any errors or warnings 
+    ! and puts the params on the stack (first in, last out) (PUSH in, POP out) ready for the actual api to call when jmp eax is called.
+
+
+    ! Clarion Global Map embed
+
+    Module('Call_GetProcAddress_DLL.a')  
+
+!            eax,  ebx,    ecx,    edx,    !--- 32bit Stack starts here with zero or more parameters. 16bit registers and stack use a 2 byte word/Short/Ushort, 32bit registers and stack use a 4 byte Dword/Long/Ulong
+JmpDLL_P0   (long, long=0, long=0, long=0 ), long, Proc, Name('JmpDLL')     ! No Param passed
+JmpDLL_P1   (long, long=0, long=0, long=0, long ), long, Proc, Name('JmpDLL')   ! 1 Param passed
+JmpDLL_P2   (long, long=0, long=0, long=0, long, long ), long, Proc, Name('JmpDLL')   ! 2 Param passed
+JmpDLL_P3   (long, long=0, long=0, long=0, long, long, long ), long, Proc, Name('JmpDLL')   ! 3 Param passed
+JmpDLL_P4   (long, long=0, long=0, long=0, long, long, long, long ), long, Proc, Name('JmpDLL')   ! 4 Param passed
+JmpDLL_P5   (long, long=0, long=0, long=0, long, long, long, long, long, long ), long, Proc, Name('JmpDLL')   ! 5 Param passed
+JmpDLL_P6   (long, long=0, long=0, long=0, long, long, long, long, long, long, long ), long, Proc, Name('JmpDLL')   ! 6 Param passed
+JmpDLL_P7   (long, long=0, long=0, long=0, long, long, long, long, long, long, long, long ), long, Proc, Name('JmpDLL')   ! 7 Param passed
+JmpDLL_P8   (long, long=0, long=0, long=0, long, long, long, long, long, long, long, long, long ), long, Proc, Name('JmpDLL')   ! 8 Param passed
+JmpDLL_P9   (long, long=0, long=0, long=0, long, long, long, long, long, long, long, long, long, long ), long, Proc, Name('JmpDLL')   ! 9 Param passed
+JmpDLL_P10  (long, long=0, long=0, long=0, long, long, long, long, long, long, long, long, long, long, long ), long, Proc, Name('JmpDLL')   ! 10 Param passed
+JmpDLL_P11  (long, long=0, long=0, long=0, long, long, long, long, long, long, long, long, long, long, long, long ), long, Proc, Name('JmpDLL')   ! 11 Param passed
+JmpDLL_P12  (long, long=0, long=0, long=0, long, long, long, long, long, long, long, long, long, long, long, long, long ), long, Proc, Name('JmpDLL')   ! 12 Param passed
+JmpDLL_P13  (long, long=0, long=0, long=0, long, long, long, long, long, long, long, long, long, long, long, long, long, long ), long, Proc, Name('JmpDLL')   ! 13 Param passed
+JmpDLL_P14  (long, long=0, long=0, long=0, long, long, long, long, long, long, long, long, long, long, long, long, long, long, long ), long, Proc, Name('JmpDLL')   ! 14 Param passed
+JmpDLL_P15  (long, long=0, long=0, long=0, long, long, long, long, long, long, long, long, long, long, long, long, long, long, long, long ), long, Proc, Name('JmpDLL')   ! 15 Param passed
+
+! The order of win api parameters are reversed when using JmpDLL, ie first on the stack, last out of the stack.
+! The C & Pascal calling convention only determines who cleans the stack. With C, the called API cleans the stack, with Pascal, the (clarion) program calling the API cleans the stack.
+
+    End
+
+
+!   Example of a standard Clarion AppGen Procedure
+
+!                                    |----------- params mirror the order of the window API parameter order -----------|
+JKWinAPI_VDMEnumTaskWOWEx Procedure( ulong pGetProcAddress, Dword dwProcessID, Ulong pAddressToCallBackProc, Long lParam ), int
+    Code
+
+    ! Reverse the order of the params when calling JmpDLL
+    ! To see these params in the debugger, breakpoint the below 'return JmpDLL...' line.
+    ! In the Stack Trace window, expand the "Thread"=[some number] node to see the 32bit Eax registers. 
+    ! 16bit registers are 2 digit ax, bx, cx, and dx, 32bit registers are Eax, Ebx, Ecx & Edx.
+    ! To watch the assembler code, switch to the dissembly window and step through each line of assembler code.
+
+    return JmpDLL_P3( pGetProcAddress,0,0,0,lParam,pAddressToCallBackProc,dwProcessID )
+
+    Jim Kane Example taken from cmag-2001-11.pdf
+
+============================================================================ *)
+
+USE16             = 00H
+USE32             = 01H
+
+ABS_ALIGN         = 00H
+BYTE_ALIGN        = 20H
+WORD_ALIGN        = 40H
+PARA_ALIGN        = 60H
+PAGE_ALIGN        = 80H
+DWORD_ALIGN       = 0A0H
+
+DONT_COMBINE      = 00H
+MEMORY_COMBINE    = 04H
+PUBLIC_COMBINE    = 08H
+STACK_COMBINE     = 14H
+COMMON_COMBINE    = 18H
+
+segment JK_JmpDLL_TEXT (CODE,USE32 + DWORD_ALIGN + PUBLIC_COMBINE )
+    public JmpDLL:                     
+        jmp eax                        
+
+
+
+
+
+
