@@ -1,5 +1,7 @@
 # Call-DLL-at-Runtime-Unicode-GUID
 
+![](Sample Power Events.png)
+
 Clarion 11 AppGen Example Application (.App) and Dictionary (.Dct) files.
 
 Loads DLL's dynamically at Runtime.
