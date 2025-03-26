@@ -4,7 +4,8 @@
 
 ![Screenshot](https://github.com/Intelligent-Silicon/Call-DLL-at-Runtime-Unicode-GUID/tree/main/ScreenShot.png)
 
-Clarion 11 AppGen Example Application (.App) and Dictionary (.Dct) files.
+Softvelocity Clarion 11 AppGen Example Application (.App) and Dictionary (.Dct) files.
+SoftVelocity.com
 
 Loads DLL's dynamically at Runtime.
 
@@ -20,7 +21,7 @@ Loads DLL's with the Security Attributes 'Load_Library_Search_System32' & 'Load_
 
 ****************************** FYI ******************************
 
-The LoadLibraryEx Security Attribute (SA) 'LOAD_IGNORE_CODE_AUTHZ_LEVEL' bypasses Group Policy and AppLocker security settings which is a major security risk, and most organisations dont check that their installed Windows apps are not using this SA for possibly malicious reasons. Its recommended use is only for installation software.
+The LoadLibraryEx Security Attribute (SA) 'LOAD_IGNORE_CODE_AUTHZ_LEVEL' bypasses Group Policy and AppLocker security settings which is a major security risk, and most organisations dont check that their installed Windows apps are not using this SA for possibly malicious reasons. The SA's recommended use is only for installation software.
 
 ****************************** FYI ******************************
 
