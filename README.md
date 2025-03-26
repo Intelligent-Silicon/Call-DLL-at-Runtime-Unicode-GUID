@@ -2,7 +2,7 @@
 
 ## General Overview
 
-[Screenshot](/Sample Power Events.png)
+![Screenshot](https://github.com/Intelligent-Silicon/Call-DLL-at-Runtime-Unicode-GUID/tree/main/ScreenShot.png)
 
 Clarion 11 AppGen Example Application (.App) and Dictionary (.Dct) files.
 
@@ -42,8 +42,11 @@ https://learn.microsoft.com/en-us/windows/win32/api/winnls/nf-winnls-getacp
 
 https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-lstrlenw
 
-EXE doesnt need any Clarion Runtime DLL'S
 
-Exe will trigger a Windows Defender security alert - Behavior:Win32/DefenseEvasion.A!ml, because its not CodeSigned.
+### Demo App
+
+ApiUnicode.EXE compiled as a Standalone EXE so it doesnt need any Clarion Runtime DLL'S, just download and run.
+
+ApiUnicode.Exe will generate a False Positive Windows Defender security alert - Behavior:Win32/DefenseEvasion.A!ml, because its not CodeSigned.
 
  
