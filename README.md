@@ -40,6 +40,6 @@ https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-lstrlenw
 
 EXE doesnt need any Clarion Runtime DLL'S
 
-Exe will trigger a Windows Defender security alert - Behavior:Win32/DefenseEvasion.A!ml, probably because its not CodeSigned.
+Exe will trigger a Windows Defender security alert - Behavior:Win32/DefenseEvasion.A!ml, because its not CodeSigned.
 
  
