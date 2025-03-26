@@ -1,6 +1,8 @@
-# Call-DLL-at-Runtime-Unicode-GUID
+# Demo Clarion AppGen App show casing a variety of techniques.
 
-![](./Sample Power Events.png)
+## General Overview
+
+[Screenshot](/Sample Power Events.png)
 
 Clarion 11 AppGen Example Application (.App) and Dictionary (.Dct) files.
 
@@ -24,7 +26,7 @@ The LoadLibraryEx Security Attribute (SA) 'LOAD_IGNORE_CODE_AUTHZ_LEVEL' bypasse
 
 https://learn.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-loadlibraryexa
 
-Registers, Displays and Unregisters the Power Setting Notification GUIDS.
+### Registers, Displays and Unregisters the Power Setting Notification GUIDS.
 
 https://learn.microsoft.com/en-us/windows/win32/power/registering-for-power-events
 
@@ -32,7 +34,7 @@ https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-registerp
 
 https://learn.microsoft.com/en-us/windows/win32/power/power-setting-guids
 
-Converts the Unicode GUIDS into Ansi strings detecting the local machine's Ansi Code Page (ACP).
+### Converts the Unicode GUIDS into Ansi strings detecting the local machine's Ansi Code Page (ACP).
 
 https://learn.microsoft.com/en-us/windows/win32/api/stringapiset/nf-stringapiset-widechartomultibyte
 
